@@ -204,11 +204,47 @@ def productoTensorVectores(a,b):
         for j in range(len(b)):
             ans.append(complexProduct(a[i],b[j]))
     return ans 
+def accionmatrizvector(matrix, vector):
 
-def main():
-    M=[[(0,0),(0,-1)],[(0,1),(0,0)]]
-    V=[[((1/math.sqrt(2)),0)],[(0,(1/math.sqrt(2)))]]
-    var=matrixProduct(M,M)
-    print(var)
+    row, col = len(matrix), len(matrix[0])
+    length = len(vector)
 
-main()
+    if (col == length):
+        answ = [[0, 0] for x in range(row)]
+
+        for i in range(row):
+            for j in range(col):
+                multi = complexProduct(matrix[i][j], vector[j])
+                answ[i] = complexSum(answ[i], multi)
+
+        return answ
+    print("Las dimensiones de las matrices, no son los adecuados para su multiplicacion")
+
+def accionvectormatrizboolean( matrix, vector ):
+    row, col  = len( matrix ), len( matrix [ 0 ] )
+    length = len( vector )
+
+    if  ( col == length ):
+        answ = [ False for c in range( row  ) ]
+
+        for i in range( row ):
+            And = True
+            
+            for j in range( col ):
+                And = matrix[ i ][ j ] and vector[ j ]  
+                answ [ i ] = answ[ i ] or And
+            
+        return answ 
+    print("Las dimensiones de las matrices, no son los adecuados para su multiplicacion")
+def identityMatrix( matrix ):
+    row,  column  = len( matrix ) , len( matrix[ 0 ] )
+    
+    matrix=[[[] for i in range( column )] for j in range( row )]
+    
+    for i in range( row ):
+        for j in range(  column ):
+            if i==j:
+                matrix[ i ][ j ] =  [ 1,0]
+            else:
+                matrix[ i ][ j ] =  [ 0,0 ]
+    return matrix
