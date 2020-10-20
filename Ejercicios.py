@@ -1,13 +1,6 @@
 import Quantum as q
 import ComplexLibrary as cl
 
-sx = [[0, 1],
-      [1, 0]]
-sy = [[0, -1j],
-      [1j, 0]]
-sz = [[1, 0],
-      [0, -1]]
-
 def mostrarRespuesta4_3_1(observable):
     x, v = q.EigenValues(observable)
     answ = []
